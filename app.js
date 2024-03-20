@@ -163,9 +163,46 @@ function calculateTeamsSkill() {
     console.log('FINAL T2', team2Skill)
 }
 
-function calculateWinner() {
+function drawTeam(teamNum) {
+    let team1Roster = ''
+    let team2Roster = ''
+    for (let i = 0; i < players.length; i++) {
+        if (players[i].teamNumber == 1) {
+            team1Roster += players[i].emoji
+            // console.log('team 1;', team1Roster)
+        }
+        else {
+            team2Roster += players[i].emoji
+            // console.log('team 2:', team2Roster)
+        }
+    }
 
+    let team1RosterElem = document.getElementById('team-1-roster')
+    team1RosterElem.innerHTML = team1Roster
+    let team2RosterElem = document.getElementById('team-2-roster')
+    team2RosterElem.innerHTML = team2Roster
+}
+
+function resetTeamNumbers() {
+    players.forEach(player => {
+        player.teamNumber = 0
+    });
+    console.log(players)
+}
+
+function calculateWinner() {
+    let winner = ''
+    if (team1Skill > team2Skill) {
+        winner = 'team 1'
+    }
+    else {
+        winner = 'team 2'
+    }
+    console.log(winner, 'wins')
 }
 
 createTeams()
 calculateTeamsSkill()
+calculateWinner()
+// resetTeamNumbers()
+drawTeam(1)
