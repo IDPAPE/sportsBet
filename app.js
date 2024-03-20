@@ -147,9 +147,9 @@ function createTeams() {
         // console.log(availablePlayers[selectedPlayer])
         availablePlayers[selectedPlayer].teamNumber = 2
     }
-    console.log(players.filter(player => player.teamNumber == 2))
     console.log(players.filter(player => player.teamNumber == 1))
-    drawTeam
+    console.log(players.filter(player => player.teamNumber == 2))
+    drawTeam()
 }
 
 function calculateTeamsSkill() {
