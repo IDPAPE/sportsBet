@@ -2,7 +2,9 @@ let bank = 100
 let teamSize = 10
 let team1Skill = 0
 let team2Skill = 0
-let outputMsgElem = document.getElementById('onscreen-msg')
+let roundNum = 0
+let roundOutputMsgElem = document.getElementById('round-onscreen-msg')
+let bankOutputMsgElem = document.getElementById('bank-onscreen-msg')
 
 const players = [
     {
@@ -147,6 +149,7 @@ function createTeams() {
     }
     console.log(players.filter(player => player.teamNumber == 2))
     console.log(players.filter(player => player.teamNumber == 1))
+    drawTeam
 }
 
 function calculateTeamsSkill() {
@@ -165,14 +168,23 @@ function calculateTeamsSkill() {
 }
 
 function placeBet(amount, team) {
-    let currentBet = amount
-    let selectedTeam = team
+    // let selectedTeam = team
     let winner = calculateWinner()
-    bank -= currentBet
-    if (selectedTeam == winner) {
-        bank += currentBet * 2
+    if (bank >= amount) {
+        bank -= amount
+        if (team == winner) {
+            bank += amount * 2
+            bankOutputMsgElem.innerHTML = `Congrats, you won $${amount}!`
+        }
+        else {
+            bankOutputMsgElem.innerHTML = `Sorry, you lost $${amount}!`
+        }
+    }
+    else {
+        bankOutputMsgElem.innerHTML = `Cannot place bet, insufficient funds`
     }
     drawBank()
+    nextRound()
 }
 
 function drawTeam() {
@@ -192,7 +204,7 @@ function drawTeam() {
     team1RosterElem.innerHTML = team1Roster
     let team2RosterElem = document.getElementById('team-2-roster')
     team2RosterElem.innerHTML = team2Roster
-    outputMsgElem.innerHTML = `Teams have been shuffled, place your bet!`
+    roundOutputMsgElem.innerHTML = `Currently round: ${roundNum}, Teams have been shuffled, place your bet!`
 }
 
 function drawBank() {
@@ -219,11 +231,22 @@ function calculateWinner() {
     return (winner)
 }
 
+function nextRound() {
+    team1Skill = 0
+    team2Skill = 0
+    roundNum++
+    resetTeamNumbers()
+    createTeams()
+    calculateTeamsSkill()
+    drawTeam()
+    calculateWinner()
+    drawBank()
+}
 
+nextRound()
 
-createTeams()
-calculateTeamsSkill()
-calculateWinner()
-// resetTeamNumbers()
-drawTeam()
-drawBank()
+// createTeams()
+// calculateTeamsSkill()
+// drawTeam()
+// calculateWinner()
+// drawBank()
