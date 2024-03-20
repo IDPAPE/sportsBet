@@ -2,6 +2,7 @@ let bank = 100
 let teamSize = 10
 let team1Skill = 0
 let team2Skill = 0
+let outputMsgElem = document.getElementById('onscreen-msg')
 
 const players = [
     {
@@ -163,7 +164,18 @@ function calculateTeamsSkill() {
     console.log('FINAL T2', team2Skill)
 }
 
-function drawTeam(teamNum) {
+function placeBet(amount, team) {
+    let currentBet = amount
+    let selectedTeam = team
+    let winner = calculateWinner()
+    bank -= currentBet
+    if (selectedTeam == winner) {
+        bank += currentBet * 2
+    }
+    drawBank()
+}
+
+function drawTeam() {
     let team1Roster = ''
     let team2Roster = ''
     for (let i = 0; i < players.length; i++) {
@@ -176,11 +188,16 @@ function drawTeam(teamNum) {
             // console.log('team 2:', team2Roster)
         }
     }
-
     let team1RosterElem = document.getElementById('team-1-roster')
     team1RosterElem.innerHTML = team1Roster
     let team2RosterElem = document.getElementById('team-2-roster')
     team2RosterElem.innerHTML = team2Roster
+    outputMsgElem.innerHTML = `Teams have been shuffled, place your bet!`
+}
+
+function drawBank() {
+    let bankRosterElem = document.getElementById('bank')
+    bankRosterElem.innerHTML = `$${bank}`
 }
 
 function resetTeamNumbers() {
@@ -199,10 +216,14 @@ function calculateWinner() {
         winner = 'team 2'
     }
     console.log(winner, 'wins')
+    return (winner)
 }
+
+
 
 createTeams()
 calculateTeamsSkill()
 calculateWinner()
 // resetTeamNumbers()
-drawTeam(1)
+drawTeam()
+drawBank()

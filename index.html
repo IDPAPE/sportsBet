@@ -14,45 +14,86 @@
 
 </head>
 
-<body class="debug">
-    <header class="container-fluid">
+<body class="">
+    <header class="container-fluid bg-danger">
         <div class="row">
-            <div class="col">
-                Cool Website Name
+            <div class="col text-light p-2">
+                <h1>
+                    Cool Website Name
+                </h1>
             </div>
         </div>
     </header>
 
     <main class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-3">
-                Bank
+            <div class="col-3 bg-danger-subtle rounded m-3">
+                <h1 id="bank" class="text-center">Bank</h1>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-5">
 
-                <div id="team-1-roster" class="row">
-                    Team 1 here
+            <div class="col-5">
+                <div class="row bg-danger-subtle rounded m-3">
+                    <h2 id="team-1-roster" class="text-center p-2">Team 1 here</h2>
                 </div>
-                <div class="row">
-                    buttons
+                <div class="row justify-content-center">
+                    <div class="col-4 text-center">
+                        <button class="btn btn-rounded btn-danger px-5" onclick="placeBet(10, 'team 1')">
+                            <h4>$10</h4>
+                        </button>
+                    </div>
+                    <div class="col-4 text-center">
+                        <button class="btn btn-rounded btn-danger px-5" onclick="placeBet(25, 'team 1')">
+                            <h4>$25</h4>
+                        </button>
+                    </div>
+                    <div class="col-4 text-center">
+                        <button class="btn btn-rounded btn-danger px-5" onclick="placeBet(50, 'team 1')">
+                            <h4>$50</h4>
+                        </button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button class="btn btn-rounded btn-danger px-5 my-3" onclick="placeBet(bank, 'team 1')">
+                            <h4>All In!</h4>
+                        </button>
+                    </div>
                 </div>
             </div>
+
             <div class="col-5">
-                <div id="team-2-roster" class="row">
-                    Team 2 here
+                <div class="row bg-danger-subtle rounded m-3">
+                    <h2 id="team-2-roster" class="text-center p-2">Team 2 here</h2>
                 </div>
-                <div class="row">
-                    buttons
+                <div class="row justify-content-center">
+                    <div class="col-4 text-center">
+                        <button class="btn btn-rounded btn-danger px-5" onclick="placeBet(10, 'team 2')">
+                            <h4>$10</h4>
+                        </button>
+                    </div>
+                    <div class="col-4 text-center">
+                        <button class="btn btn-rounded btn-danger px-5" onclick="placeBet(25, 'team 2')">
+                            <h4>$25</h4>
+                        </button>
+                    </div>
+                    <div class="col-4 text-center">
+                        <button class="btn btn-rounded btn-danger px-5" onclick="placeBet(50, 'team 2')">
+                            <h4>$50</h4>
+                        </button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button class="btn btn-rounded btn-danger px-5 my-3" onclick="placeBet(bank, 'team 2')">
+                            <h4>All In!</h4>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-5">
-                message to user
+            <div id="onscreen-msg" class="col-5 bg-danger-subtle p-3 rounded">
+                placeholder msg
             </div>
         </div>
 
